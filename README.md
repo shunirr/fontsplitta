@@ -28,9 +28,9 @@ python ./web_font_splitter.py FONT_FILE
 
 ## Using a custom CSS template file
 
-If you want to modify the output CSS, you can use the `font-face.css.template` file:
+If you want to modify the output CSS, you can create a new `font-face.css.template` file:
 
-```css
+```
 @font-face {
   font-family: "${font_family}";
   font-style: ${font_style};
