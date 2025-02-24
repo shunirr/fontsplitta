@@ -2,6 +2,10 @@
 
 This is a CLI tool for splitting fonts and generating CSS.
 
+## Requirements
+
+- Python 3
+
 ## Getting Started
 
 Install the dependency libraries:
