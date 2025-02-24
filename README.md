@@ -55,3 +55,9 @@ python ./web_font_splitter.py FONT_FILE --unicode_ranges_file=YOUR_UNICODE_RANGE
 ```
 
 You can generate the unicode ranges using your web page contents.
+
+## Test with local web server
+
+```console
+python test_server.py
+```
