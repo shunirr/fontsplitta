@@ -1,6 +1,6 @@
 # web-font-splitter
 
-This is a CLI tool for splitting fonts and generating CSS.
+This is a CLI tool for splitting fonts and generating CSS like a Google Fonts.
 
 ## Requirements
 
