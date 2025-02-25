@@ -56,10 +56,14 @@ If you want to use custom unicode ranges, you can use the `--unicode_ranges_file
 python ./web_font_splitter.py FONT_FILE --unicode_ranges_file=YOUR_UNICODE_RANGES_FILE
 ```
 
-You can generate the unicode ranges using your web page contents.
+For example, you can generate the unicode ranges using your web page contents.
 
 ## Test with local web server
+
+You can check the generated fonts and the generated css on your browser:
 
 ```console
 python test_server.py
 ```
+
+And then, access to `http://localhost:8080/`.
