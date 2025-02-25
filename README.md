@@ -63,7 +63,7 @@ For example, you can generate the unicode ranges using your web page contents.
 You can check the generated fonts and the generated css on your browser:
 
 ```console
-python test_server.py
+python ./test_server.py
 ```
 
 And then, access to `http://localhost:8080/`.
