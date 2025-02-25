@@ -68,6 +68,8 @@ python ./test_server.py
 
 And then, access to `http://localhost:8080/`.
 
-## Q. Why do you use Python?
+## Why do you use Python?
 
-A. Because it depends on the `fonttools` library and the `pyftsubset` command, which are written in Python.
+Because it depends on the `fonttools` library and the `pyftsubset` command, which are written in Python.
+
+If you write similar tools in another language, I think they will still depend on Python for the above tools.
