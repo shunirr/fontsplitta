@@ -40,6 +40,8 @@ If you want to modify the output CSS, you can create a new `font-face.css.templa
 }
 ```
 
+Basically, you should use your environment's hostname in the `src` section.
+
 And then,
 
 ```console
