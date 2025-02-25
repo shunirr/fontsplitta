@@ -35,7 +35,7 @@ If you want to modify the output CSS, you can create a new `font-face.css.templa
   font-family: "${font_family}";
   font-style: ${font_style};
   font-weight: ${font_weight};
-  src: url(http://localhost:8080/${font_url}) format("${font_format}");
+  src: url(http://localhost:8080/output/${font_filename}) format("${font_format}");
   unicode-range: ${unicode_range};
 }
 ```

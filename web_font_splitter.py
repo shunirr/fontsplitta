@@ -29,11 +29,11 @@ def generate_subset_font(
     if not os.path.exists(output_dir):
         os.mkdir(output_dir)
 
-    filename = unique_filename(unicode_range)
-    output_file = ("{}/{}.{}").format(output_dir, filename, font_format)
+    filename = ("{}.{}").format(unique_filename(unicode_range), font_format)
+    output_file = ("{}/{}").format(output_dir, filename)
 
     if os.path.exists(output_file):
-        return output_file
+        return filename
 
     subprocess.run(
         [
@@ -45,7 +45,7 @@ def generate_subset_font(
             "--output-file=" + output_file,
         ]
     )
-    return output_file
+    return filename
 
 
 @click.command()
@@ -80,7 +80,7 @@ def main(
 
     font_faces = []
     for unicode_range in unicode_ranges:
-        subset_font_path = generate_subset_font(
+        subset_font_filename = generate_subset_font(
             font_file, unicode_range, font_format, output_dir
         )
         font_faces.append(
@@ -88,7 +88,7 @@ def main(
                 font_family=font_family,
                 font_style="normal",
                 font_weight=font_weight,
-                font_url=subset_font_path,
+                font_filename=subset_font_filename,
                 font_format=font_format,
                 unicode_range=unicode_range,
             )
