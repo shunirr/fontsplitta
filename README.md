@@ -12,22 +12,22 @@ By properly splitting large fonts such as Japanese fonts, it aims to reduce tran
 
 ## Getting Started
 
-Install the dependency libraries:
+Install from PyPI:
 
 ```console
-poetry install
+pip install fontsplitta
 ```
 
 Generate `unicode_ranges.txt` using Google Fonts' CSS:
 
 ```console
-poetry run fontsplitta get-unicode-ranges-from-google-fonts
+fontsplitta get-unicode-ranges-from-google-fonts
 ```
 
 Split fonts and generate CSS:
 
 ```console
-poetry run fontsplitta split FONT_FILE
+fontsplitta split FONT_FILE
 ```
 
 ## Using a custom CSS template file
@@ -49,7 +49,7 @@ Basically, you should use your environment's hostname in the `src` section.
 And then,
 
 ```console
-poetry run fontsplitta split FONT_FILE --css_template=YOUR_CSS_TEMPLATE
+fontsplitta split FONT_FILE --css_template=YOUR_CSS_TEMPLATE
 ```
 
 ## Using custom unicode ranges
@@ -57,7 +57,7 @@ poetry run fontsplitta split FONT_FILE --css_template=YOUR_CSS_TEMPLATE
 If you want to use custom unicode ranges, you can use the `--unicode_ranges_file` option:
 
 ```console
-poetry run fontsplitta split FONT_FILE --unicode_ranges_file=YOUR_UNICODE_RANGES_FILE
+fontsplitta split FONT_FILE --unicode_ranges_file=YOUR_UNICODE_RANGES_FILE
 ```
 
 You can generate the unicode ranges using your web page contents.
@@ -65,5 +65,5 @@ You can generate the unicode ranges using your web page contents.
 ## Test with local web server
 
 ```console
-poetry run fontsplitta test-server
+fontsplitta test-server
 ```

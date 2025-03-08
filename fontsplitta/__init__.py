@@ -1,11 +1,14 @@
 import click
-from modules import split
-from modules import test_server
-from modules import google_fonts
+from fontsplitta import split
+from fontsplitta import test_server
+from fontsplitta import google_fonts
 
+from importlib.metadata import version
+
+__version__ = version(__package__)
 
 @click.group()
-@click.version_option(version="0.1.0")
+@click.version_option(version=__version__)
 def cli():
     pass
 
