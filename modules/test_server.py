@@ -41,7 +41,7 @@ TEMPLATE = Template(
         """\
 <html lang="ja">
   <head>
-    <title>web-font-splitter test</title>
+    <title>fontsplitta test</title>
     <meta charset="UTF-8" />
     <link rel="stylesheet" type="text/css" href="${css_file}" />
     <style>

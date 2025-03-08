@@ -1,6 +1,10 @@
-# web-font-splitter
+# fontsplitta
 
-This is a CLI tool for splitting fonts and generating CSS.
+`fontsplitta` is a command-line tool that splits web fonts and generates CSS.
+
+It creates web fonts that are divided into specific Unicode ranges, similar to Google Fonts.
+
+By properly splitting large fonts such as Japanese fonts, it aims to reduce transfer size and improve user experience.
 
 ## Requirements
 
@@ -17,13 +21,13 @@ poetry install
 Generate `unicode_ranges.txt` using Google Fonts' CSS:
 
 ```console
-poetry run python ./wfs.py get-unicode-ranges-from-google-fonts
+poetry run python ./fontsplitta.py get-unicode-ranges-from-google-fonts
 ```
 
 Split fonts and generate CSS:
 
 ```console
-poetry run python ./wfs.py split FONT_FILE
+poetry run python ./fontsplitta.py split FONT_FILE
 ```
 
 ## Using a custom CSS template file
@@ -45,7 +49,7 @@ Basically, you should use your environment's hostname in the `src` section.
 And then,
 
 ```console
-poetry run python ./wfs.py split FONT_FILE --css_template=YOUR_CSS_TEMPLATE
+poetry run python ./fontsplitta.py split FONT_FILE --css_template=YOUR_CSS_TEMPLATE
 ```
 
 ## Using custom unicode ranges
@@ -53,7 +57,7 @@ poetry run python ./wfs.py split FONT_FILE --css_template=YOUR_CSS_TEMPLATE
 If you want to use custom unicode ranges, you can use the `--unicode_ranges_file` option:
 
 ```console
-poetry run python ./wfs.py split FONT_FILE --unicode_ranges_file=YOUR_UNICODE_RANGES_FILE
+poetry run python ./fontsplitta.py split FONT_FILE --unicode_ranges_file=YOUR_UNICODE_RANGES_FILE
 ```
 
 You can generate the unicode ranges using your web page contents.
@@ -61,5 +65,5 @@ You can generate the unicode ranges using your web page contents.
 ## Test with local web server
 
 ```console
-poetry run python ./wfs.py test-server
+poetry run python ./fontsplitta.py test-server
 ```
