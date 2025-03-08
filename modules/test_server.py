@@ -5,10 +5,12 @@ import re
 import os
 import click
 
+
 class CustomHTTPServer(HTTPServer):
     def __init__(self, server_address, RequestHandlerClass, html):
         super().__init__(server_address, RequestHandlerClass)
         self.html = html
+
 
 class CustomHTTPRequestHandler(BaseHTTPRequestHandler):
     def do_GET(self):
@@ -37,8 +39,9 @@ class CustomHTTPRequestHandler(BaseHTTPRequestHandler):
         self.end_headers()
         self.wfile.write(b"File Not Found")
 
+
 TEMPLATE = Template(
-        """\
+    """\
 <html lang="ja">
   <head>
     <title>fontsplitta test</title>
@@ -59,15 +62,16 @@ TEMPLATE = Template(
   </body>
 </html>
 """
-    )
+)
+
 
 def generate_html(css_file: str):
-  with open(css_file, "r") as file:
-      content = file.read()
-  pattern = r"^\s*font-family:\s+\"([^\"]+)\";$"
-  font_family = re.search(pattern, content, flags=re.MULTILINE).group(1)
+    with open(css_file, "r") as file:
+        content = file.read()
+    pattern = r"^\s*font-family:\s+\"([^\"]+)\";$"
+    font_family = re.search(pattern, content, flags=re.MULTILINE).group(1)
 
-  return TEMPLATE.substitute(font_family=font_family, css_file=css_file)
+    return TEMPLATE.substitute(font_family=font_family, css_file=css_file)
 
 
 @click.command()
@@ -75,7 +79,7 @@ def generate_html(css_file: str):
 @click.option("--port", type=int, default=8080)
 @click.option("--css_file", type=str, default="output/font-face.css")
 def test_server(addr: str, port: int, css_file: str):
-  html = generate_html(css_file)
-  with CustomHTTPServer((addr, port), CustomHTTPRequestHandler, html) as httpd:
-    print(f"Serving on http://{addr}:{port}/")
-    httpd.serve_forever()
+    html = generate_html(css_file)
+    with CustomHTTPServer((addr, port), CustomHTTPRequestHandler, html) as httpd:
+        print(f"Serving on http://{addr}:{port}/")
+        httpd.serve_forever()

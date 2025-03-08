@@ -1,6 +1,6 @@
-from string import Template
+from fontTools.subset import main as pyftsubset
 from fontTools import ttLib
-import subprocess
+from string import Template
 import hashlib
 import base64
 import click
@@ -15,7 +15,9 @@ CSS_TEMPLATE = Template(
   src: url(http://localhost:8080/output/${font_filename}) format("${font_format}");
   unicode-range: ${unicode_range};
 }
-""")
+"""
+)
+
 
 def get_font_info(fontPath: str) -> dict:
     font = ttLib.TTFont(fontPath)
@@ -34,7 +36,7 @@ def unique_filename(unicode_range: str) -> str:
 
 
 def generate_subset_font(
-    font_file: str, unicode_range: str, font_format: str, output_dir: str
+    font_file: str, unicode_range: str, font_format: str, output_dir: str, force: bool
 ) -> str:
     if not os.path.exists(output_dir):
         os.mkdir(output_dir)
@@ -42,12 +44,12 @@ def generate_subset_font(
     filename = ("{}.{}").format(unique_filename(unicode_range), font_format)
     output_file = ("{}/{}").format(output_dir, filename)
 
-    if os.path.exists(output_file):
+    if not force and os.path.exists(output_file):
+        print("[INFO] skip: " + output_file)
         return filename
 
-    subprocess.run(
+    pyftsubset(
         [
-            "pyftsubset",
             font_file,
             "--unicodes=" + unicode_range,
             "--layout-features=*",
@@ -55,6 +57,7 @@ def generate_subset_font(
             "--output-file=" + output_file,
         ]
     )
+    print("[INFO] generate: " + output_file)
     return filename
 
 
@@ -69,32 +72,55 @@ def generate_subset_font(
 )
 @click.option("--output_dir", type=click.Path(), default="output")
 @click.option("--font_format", type=click.Choice(["woff2", "woff"]), default="woff2")
+@click.option("--font_face_css", type=click.Path(), default="font-face.css")
+@click.option("--force", is_flag=True, default=False)
 def split(
     font_file: str,
     unicode_ranges_file: str,
     css_template_file: str,
     output_dir: str,
     font_format: str,
+    font_face_css: str,
+    force: bool,
 ):
+    if not os.path.exists(font_file):
+        print("[ERROR] font file not found: " + font_file)
+        return
+
+    if not os.path.exists(unicode_ranges_file):
+        print("[ERROR] unicode ranges file not found: " + unicode_ranges_file)
+        return
+
     with open(unicode_ranges_file, "r") as file:
         content = file.read()
         unicode_ranges = content.split("\n")
 
-    if (css_template_file and os.path.exists(css_template_file)):
+    if unicode_ranges == [""]:
+        print("[ERROR] No unicode ranges found in the file")
+        return
+
+    print("[INFO] unicode-range: {} ranges found".format(len(unicode_ranges)))
+
+    if css_template_file and os.path.exists(css_template_file):
+        print("[INFO] Using custom css template: " + css_template_file)
         with open(css_template_file, "r") as file:
             css_template = Template(file.read())
     else:
+        print("[INFO] Using default css template")
         css_template = CSS_TEMPLATE
 
     font_info = get_font_info(font_file)
-    font_family = font_info["font_family"]
-    font_weight = font_info["font_weight"]
+    font_family = str(font_info["font_family"])
+    font_weight = str(font_info["font_weight"])
+
+    print("[INFO] font-family: " + font_family + ", font-weight: " + font_weight)
 
     font_faces = []
     for unicode_range in unicode_ranges:
         subset_font_filename = generate_subset_font(
-            font_file, unicode_range, font_format, output_dir
+            font_file, unicode_range, font_format, output_dir, force
         )
+
         font_faces.append(
             css_template.substitute(
                 font_family=font_family,
@@ -106,5 +132,8 @@ def split(
             )
         )
 
-    with open(output_dir + "/font-face.css", "w") as file:
+    print("[INFO] generate CSS: " + output_dir + "/" + font_face_css)
+    with open(output_dir + "/" + font_face_css, "w") as file:
         file.write("\n".join(font_faces))
+
+    print("[INFO] success to generate")
