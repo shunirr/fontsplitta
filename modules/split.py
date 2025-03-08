@@ -54,16 +54,16 @@ def generate_subset_font(
     "--unicode_ranges_file", type=click.Path(exists=True), default="unicode_ranges.txt"
 )
 @click.option(
-    "--css_templete_file",
+    "--css_template_file",
     type=click.Path(exists=True),
-    default="font-face.css.templete",
+    default="font-face.css.template",
 )
 @click.option("--output_dir", type=click.Path(), default="output")
 @click.option("--font_format", type=click.Choice(["woff2", "woff"]), default="woff2")
-def main(
+def split(
     font_file: str,
     unicode_ranges_file: str,
-    css_templete_file: str,
+    css_template_file: str,
     output_dir: str,
     font_format: str,
 ):
@@ -71,8 +71,8 @@ def main(
         content = file.read()
         unicode_ranges = content.split("\n")
 
-    with open(css_templete_file, "r") as file:
-        css_templete = Template(file.read())
+    with open(css_template_file, "r") as file:
+        css_template = Template(file.read())
 
     font_info = get_font_info(font_file)
     font_family = font_info["font_family"]
@@ -84,7 +84,7 @@ def main(
             font_file, unicode_range, font_format, output_dir
         )
         font_faces.append(
-            css_templete.substitute(
+            css_template.substitute(
                 font_family=font_family,
                 font_style="normal",
                 font_weight=font_weight,
@@ -96,7 +96,3 @@ def main(
 
     with open(output_dir + "/font-face.css", "w") as file:
         file.write("\n".join(font_faces))
-
-
-if __name__ == "__main__":
-    main()
