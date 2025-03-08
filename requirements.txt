@@ -1,4 +1,0 @@
-Brotli==1.1.0
-click==8.1.8
-fonttools==4.56.0
-urllib3==2.3.0

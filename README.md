@@ -1,6 +1,6 @@
 # web-font-splitter
 
-This is a CLI tool for splitting fonts and generating CSS like a Google Fonts.
+This is a CLI tool for splitting fonts and generating CSS.
 
 ## Requirements
 
@@ -11,19 +11,19 @@ This is a CLI tool for splitting fonts and generating CSS like a Google Fonts.
 Install the dependency libraries:
 
 ```console
-pip install -r requirements.txt
+poetry install
 ```
 
 Generate `unicode_ranges.txt` using Google Fonts' CSS:
 
 ```console
-python ./get_unicode_ranges_from_google_fonts.py
+poetry run python ./get_unicode_ranges_from_google_fonts.py
 ```
 
 Split fonts and generate CSS:
 
 ```console
-python ./web_font_splitter.py FONT_FILE
+poetry run python ./web_font_splitter.py FONT_FILE
 ```
 
 ## Using a custom CSS template file
@@ -40,12 +40,12 @@ If you want to modify the output CSS, you can create a new `font-face.css.templa
 }
 ```
 
-Basically, you should use your environment's URL in the `src` section.
+Basically, you should use your environment's hostname in the `src` section.
 
 And then,
 
 ```console
-python ./web_font_splitter.py FONT_FILE --css_template=YOUR_CSS_TEMPLATE
+poetry run python ./web_font_splitter.py FONT_FILE --css_template=YOUR_CSS_TEMPLATE
 ```
 
 ## Using custom unicode ranges
@@ -53,25 +53,13 @@ python ./web_font_splitter.py FONT_FILE --css_template=YOUR_CSS_TEMPLATE
 If you want to use custom unicode ranges, you can use the `--unicode_ranges_file` option:
 
 ```console
-python ./web_font_splitter.py FONT_FILE --unicode_ranges_file=YOUR_UNICODE_RANGES_FILE
+poetry run python ./web_font_splitter.py FONT_FILE --unicode_ranges_file=YOUR_UNICODE_RANGES_FILE
 ```
 
-For example, you can generate the unicode ranges using your web page contents.
+You can generate the unicode ranges using your web page contents.
 
 ## Test with local web server
 
-You can check the generated fonts and the generated css on your browser:
-
 ```console
-python ./test_server.py
+poetry run python test_server.py
 ```
-
-And then, access to `http://localhost:8080/`.
-
-## Why do you use Python?
-
-Because it depends on the `fonttools` library and the `pyftsubset` command, which are written in Python.
-
-- https://github.com/fonttools/fonttools
-
-If you write similar tools in another language, I think they will still depend on Python for the above tools.
