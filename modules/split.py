@@ -6,6 +6,16 @@ import base64
 import click
 import os
 
+CSS_TEMPLATE = Template(
+    """\
+@font-face {
+  font-family: "${font_family}";
+  font-style: ${font_style};
+  font-weight: ${font_weight};
+  src: url(http://localhost:8080/output/${font_filename}) format("${font_format}");
+  unicode-range: ${unicode_range};
+}
+""")
 
 def get_font_info(fontPath: str) -> dict:
     font = ttLib.TTFont(fontPath)
@@ -56,7 +66,6 @@ def generate_subset_font(
 @click.option(
     "--css_template_file",
     type=click.Path(exists=True),
-    default="font-face.css.template",
 )
 @click.option("--output_dir", type=click.Path(), default="output")
 @click.option("--font_format", type=click.Choice(["woff2", "woff"]), default="woff2")
@@ -71,8 +80,11 @@ def split(
         content = file.read()
         unicode_ranges = content.split("\n")
 
-    with open(css_template_file, "r") as file:
-        css_template = Template(file.read())
+    if (css_template_file and os.path.exists(css_template_file)):
+        with open(css_template_file, "r") as file:
+            css_template = Template(file.read())
+    else:
+        css_template = CSS_TEMPLATE
 
     font_info = get_font_info(font_file)
     font_family = font_info["font_family"]

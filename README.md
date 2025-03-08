@@ -21,13 +21,13 @@ poetry install
 Generate `unicode_ranges.txt` using Google Fonts' CSS:
 
 ```console
-poetry run python ./fontsplitta.py get-unicode-ranges-from-google-fonts
+poetry run fontsplitta get-unicode-ranges-from-google-fonts
 ```
 
 Split fonts and generate CSS:
 
 ```console
-poetry run python ./fontsplitta.py split FONT_FILE
+poetry run fontsplitta split FONT_FILE
 ```
 
 ## Using a custom CSS template file
@@ -49,7 +49,7 @@ Basically, you should use your environment's hostname in the `src` section.
 And then,
 
 ```console
-poetry run python ./fontsplitta.py split FONT_FILE --css_template=YOUR_CSS_TEMPLATE
+poetry run fontsplitta split FONT_FILE --css_template=YOUR_CSS_TEMPLATE
 ```
 
 ## Using custom unicode ranges
@@ -57,7 +57,7 @@ poetry run python ./fontsplitta.py split FONT_FILE --css_template=YOUR_CSS_TEMPL
 If you want to use custom unicode ranges, you can use the `--unicode_ranges_file` option:
 
 ```console
-poetry run python ./fontsplitta.py split FONT_FILE --unicode_ranges_file=YOUR_UNICODE_RANGES_FILE
+poetry run fontsplitta split FONT_FILE --unicode_ranges_file=YOUR_UNICODE_RANGES_FILE
 ```
 
 You can generate the unicode ranges using your web page contents.
@@ -65,5 +65,5 @@ You can generate the unicode ranges using your web page contents.
 ## Test with local web server
 
 ```console
-poetry run python ./fontsplitta.py test-server
+poetry run fontsplitta test-server
 ```

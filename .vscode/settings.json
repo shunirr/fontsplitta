@@ -1,11 +1,13 @@
 {
     "cSpell.words": [
         "Fontsplitta",
+        "fonttools",
         "KHTML",
         "pyftsubset",
+        "pyinstaller",
+        "setuptools",
         "shunirr",
         "unicodes",
-        "fonttools",
         "urllib"
     ]
 }

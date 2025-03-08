@@ -1,11 +1,11 @@
 import click
-
 from modules import split
 from modules import test_server
 from modules import google_fonts
 
 
 @click.group()
+@click.version_option(version="0.1.0")
 def cli():
     pass
 
