@@ -6,6 +6,7 @@
         "onefile",
         "pyftsubset",
         "pyinstaller",
+        "PYPI",
         "setuptools",
         "shunirr",
         "softprops",

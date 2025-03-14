@@ -35,6 +35,8 @@ jobs:
             dist/fontsplitta
   release-python:
     runs-on: ubuntu-latest
+    env:
+        POETRY_PYPI_TOKEN_PYPI: ${{ secrets.POETRY_PYPI_TOKEN_PYPI}}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
