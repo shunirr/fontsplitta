@@ -3,10 +3,12 @@
         "Fontsplitta",
         "fonttools",
         "KHTML",
+        "onefile",
         "pyftsubset",
         "pyinstaller",
         "setuptools",
         "shunirr",
+        "softprops",
         "unicodes",
         "urllib"
     ]
