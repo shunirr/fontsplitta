@@ -5,7 +5,8 @@ from fontsplitta import google_fonts
 
 from importlib.metadata import version
 
-__version__ = version(__package__)
+__version__ = version("fontsplitta")
+
 
 @click.group()
 @click.version_option(version=__version__)
