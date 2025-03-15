@@ -10,7 +10,13 @@ By properly splitting large fonts such as Japanese fonts, it aims to reduce tran
 
 - Python 3
 
-## Getting Started
+## Installation
+
+Install from Homebrew (macOS):
+
+```console
+brew install shunirr/fontsplitta/fontsplitta
+```
 
 Install from PyPI:
 
@@ -18,13 +24,19 @@ Install from PyPI:
 pip install fontsplitta
 ```
 
-Generate `unicode_ranges.txt` using Google Fonts' CSS:
+Or, you can download executable from releases:
+
+- https://github.com/shunirr/fontsplitta/releases
+
+## Getting Started
+
+Firstly, generate `unicode_ranges.txt` using Google Fonts' CSS:
 
 ```console
 fontsplitta get-unicode-ranges-from-google-fonts
 ```
 
-Split fonts and generate CSS:
+Secondly, split fonts and generate CSS:
 
 ```console
 fontsplitta split FONT_FILE
