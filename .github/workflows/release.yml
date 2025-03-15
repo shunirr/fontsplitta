@@ -84,3 +84,32 @@ jobs:
       - name: Publish package
         run: |
           poetry publish --build
+  update-homebrew:
+    runs-on: ubuntu-latest
+    needs: release-binary
+    steps:
+      - uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Checkout homebrew repo
+        uses: actions/checkout@v4
+        with:
+          repository: shunirr/homebrew-fontsplitta
+          path: homebrew-fontsplitta
+          token: ${{ secrets.TAP_GITHUB_TOKEN }}
+      - name: Update formula
+        run: |
+          cd homebrew-fontsplitta
+          deno run --allow-net --allow-write ../tools/update-homebrew.ts
+      - name: Commit and push
+        run: |
+          cd homebrew-fontsplitta
+          if [[ ! -z "$(git status -s)" ]]; then
+            git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git config --global user.name "github-actions[bot]"
+            git add fontsplitta.rb
+            git commit -m "Bump to $(cat current-version)"
+            git push
+          fi

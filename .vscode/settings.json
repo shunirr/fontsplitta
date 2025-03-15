@@ -1,6 +1,7 @@
 {
     "cSpell.words": [
         "ARCHITEW",
+        "denoland",
         "Fontsplitta",
         "fonttools",
         "KHTML",
@@ -14,5 +15,6 @@
         "thedoctor",
         "unicodes",
         "urllib"
-    ]
+    ],
+    "deno.enable": true
 }
