@@ -40,7 +40,7 @@ fontsplitta split FONT_FILE
 
 ## Using a custom CSS template file
 
-If you want to modify the output CSS, you can create a new `font-face.css.template` file:
+If you want to modify the output CSS, you can create a new template file:
 
 ```
 @font-face {
@@ -59,6 +59,15 @@ And then,
 ```console
 fontsplitta split FONT_FILE --css_template=YOUR_CSS_TEMPLATE
 ```
+
+You can use below variables:
+
+- `font_family` ... The font-family name extracted from the original font file
+- `font_style` ... The font style, always returns `normal`
+- `font_weight` ... The font weight extracted from the original font file
+- `font_filename` ... The split font filename
+- `font_format` ... The format of the output font, such as `woff` or `woff2`
+- `unicode_range` ... The unicode ranges specified in `unicode_ranges.txt`
 
 ## Using custom unicode ranges
 
