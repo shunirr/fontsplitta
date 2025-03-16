@@ -20,13 +20,13 @@ Install from PyPI:
 pip install fontsplitta
 ```
 
-Or, you can download executable from releases:
+Or, you can download executables from releases:
 
 - https://github.com/shunirr/fontsplitta/releases
 
 ## Getting Started
 
-Firstly, generate `unicode_ranges.txt` using Google Fonts' CSS:
+Firstly, generate an `unicode_ranges.txt` using Google Fonts' CSS:
 
 ```console
 fontsplitta get-unicode-ranges-from-google-fonts
