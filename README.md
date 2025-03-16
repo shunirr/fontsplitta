@@ -6,10 +6,6 @@ It creates web fonts that are divided into specific Unicode ranges, similar to G
 
 By properly splitting large fonts such as Japanese fonts, it aims to reduce transfer size and improve user experience.
 
-## Requirements
-
-- Python 3
-
 ## Installation
 
 Install from Homebrew (macOS):
