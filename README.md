@@ -1,3 +1,5 @@
+![fontsplitta-logo](https://github.com/user-attachments/assets/f67f1949-f80d-42e3-9c3b-79336e001512)
+
 # fontsplitta
 
 `fontsplitta` is a command-line tool that splits web fonts and generates CSS.
