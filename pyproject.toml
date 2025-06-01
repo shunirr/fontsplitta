@@ -1,6 +1,6 @@
 [project]
 name = "fontsplitta"
-version = "0.1.4"
+version = "0.1.5"
 description = "fontsplitta is a command-line tool that splits web fonts and generates CSS."
 authors = [{name = "shunirr", email = "git@s5r.jp"}]
 license = {text = "MIT"}
