@@ -26,6 +26,43 @@ Or, you can download executables from releases:
 
 - https://github.com/shunirr/fontsplitta/releases
 
+## Development
+
+This project uses [uv](https://github.com/astral-sh/uv) for Python project management.
+
+To set up the development environment:
+
+```console
+# Install uv (if not already installed)
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# Clone the repository
+git clone https://github.com/shunirr/fontsplitta.git
+cd fontsplitta
+
+# Create virtual environment and install dependencies
+uv sync
+
+# Install with dev dependencies
+uv sync --extra dev
+
+# Activate the virtual environment
+source .venv/bin/activate
+
+# Run fontsplitta in development mode
+fontsplitta --help
+```
+
+To build the project:
+
+```console
+# Build distributions
+uv build
+
+# Build standalone executable with PyInstaller
+uv run pyinstaller --onefile fontsplitta/__main__.py -n fontsplitta
+```
+
 ## Getting Started
 
 Firstly, generate an `unicode_ranges.txt` using Google Fonts' CSS:

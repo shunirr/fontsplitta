@@ -1,25 +1,27 @@
-[tool.poetry]
+[project]
 name = "fontsplitta"
 version = "0.1.4"
 description = "fontsplitta is a command-line tool that splits web fonts and generates CSS."
-authors = ["shunirr <git@s5r.jp>"]
-license = "MIT"
+authors = [{name = "shunirr", email = "git@s5r.jp"}]
+license = {text = "MIT"}
 readme = "README.md"
+requires-python = ">=3.11,<3.12"
+dependencies = [
+    "brotli>=1.1.0",
+    "fonttools>=4.56.0",
+    "urllib3>=2.3.0",
+    "click>=8.1.8",
+]
 
-[tool.poetry.dependencies]
-python = "<3.12,>=3.11"
-brotli = "^1.1.0"
-fonttools = "^4.56.0"
-urllib3 = "^2.3.0"
-click = "^8.1.8"
-
-[tool.poetry.group.dev.dependencies]
-setuptools = "^75.8.2"
-pyinstaller = "^6.12.0"
+[project.optional-dependencies]
+dev = [
+    "setuptools>=75.8.2",
+    "pyinstaller>=6.12.0",
+]
 
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
-[tool.poetry.scripts]
+[project.scripts]
 fontsplitta = "fontsplitta:main"
