@@ -5,7 +5,7 @@ description = "fontsplitta is a command-line tool that splits web fonts and gene
 authors = [{name = "shunirr", email = "git@s5r.jp"}]
 license = {text = "MIT"}
 readme = "README.md"
-requires-python = ">=3.11,<3.12"
+requires-python = ">=3.13,<3.14"
 dependencies = [
     "brotli>=1.1.0",
     "fonttools>=4.56.0",
